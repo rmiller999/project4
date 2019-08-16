@@ -39,8 +39,8 @@ router.get('/comedysall', (req, res) => {
     })
 })
 
-router.get('events/:id', (req,res) => {
-  Meals.findById(req.params.id, (err, events) => {
+router.get('/events/:id', (req,res) => {
+  Events.findById(req.params.id, (err, events) => {
   if (err) {
     res.json(err)
   }

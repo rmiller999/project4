@@ -5,6 +5,8 @@ const expressJWT = require('express-jwt');
 const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
 const User = require('./models/user');
+const Event = require('./models/event');
+
 
 const app = express();
 
@@ -47,12 +49,38 @@ app.get('/users', (req,res) => {
   })
 })
 
-app.get('events/:id', (req,res) => {
-  Events.findById(req.params.id, (err, events) => {
+app.post("/users/:uid/events", (req,res) => {
+  Event.create({
+  name: req.body.name,
+  date: req.body.date
+  }, (err, event) => {
+  User.findById(req.params.uid, (err, user) => {
+    user.events.push(event._id);
+    user.save();
+    res.json(user);
+    })
+  })
+});
+
+app.delete("/users/:uid/events/:eid", (req,res) => {
+  User.findById(req.params.uid, (err, user) => {
+    user.events.pull(req.params.eid)
+    user.save( err => {
+      if (err) res.json(err)
+      Event.deleteOne({_id: req.params.eid}, err => {
+      if (err) res.json(err)
+      res.json(1);
+        })
+      })
+    })
+})
+
+app.get('/events/:id', (req,res) => {
+  Event.findById(req.params.id, (err, event) => {
   if (err) {
     res.json(err)
   }
-  res.json(events)
+  res.json(event)
   })
 });
 

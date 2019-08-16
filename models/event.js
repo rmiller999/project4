@@ -5,4 +5,4 @@ const eventSchema = new mongoose.Schema({
     date: Date
   });
 
-module.exports = mongoose.model('Event', mealSchema);
+module.exports = mongoose.model('Event', eventSchema);
