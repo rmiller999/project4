@@ -12,6 +12,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
   const [apiData, setApiData] = useState(null)
+  const [display, setDisplay] = useState('')
 
 
   useEffect(() => {
@@ -54,7 +55,9 @@ function App() {
     }
   }, [])
 
-  const liftToken = (token, user) => {
+  const liftToken = ({token, user}) => {
+    console.log('setting user: ', user);
+    console.log('setting token: ', token)
     setToken(token)
     setUser(user)
     // this.setState({
@@ -80,15 +83,23 @@ function App() {
   // }, [])
 
   var contents
+  var list = <p>Please select one to show details</p>;
+  if (display === 'sports') {
+    list = <Sports />
+  } else if (display === 'attractions') {
+    list = <Attractions />
+  } else if (display === 'comedy') {
+    list =<Comedy />
+  } else {
+    list = <p>Please select one to show details</p>
+  }
   if (user) {
     contents = (
       <>
         <p>Hello, {user.name}</p>
         <button onClick={logout}>Logout</button>
-        <Sports />
-        <Attractions />
-        <Comedy />
-
+        <button onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
+        {list}
       </>
     );
   } else {

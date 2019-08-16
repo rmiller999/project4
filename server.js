@@ -24,7 +24,7 @@ const signLimiter = new RateLimit({
   message: 'Maximum accounts created please try again later.'
 })
 
-mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/project4', {useNewUrlParser: true});
 const db = mongoose.connection;
 db.once('open', () => {
   console.log(`Connected to Mongo on ${db.host}:${db.port}`);

@@ -40,9 +40,11 @@ router.post('/login', (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
     if (!user) {
       // if there is no user, return error
+      console.log('no user found')
       res.json({type: 'error', message: 'Account not found'})
     } else {
       // if user, check authentication
+      console.log('find a user, check password', user)
       if (user.authenticated(req.body.password)) {
         // if authenticated, sign a token (login)
         var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
