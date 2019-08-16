@@ -15,7 +15,7 @@ router.get('/sportsall', (req, res) => {
     })
 })
 
-router.get('/attractionssall', (req, res) => {
+router.get('/musicall', (req, res) => {
 
   console.log('going to check api for data')
   axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?city=seattle&classificationName=music&apikey=${process.env.API_KEY}`)

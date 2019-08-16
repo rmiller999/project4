@@ -35,23 +35,23 @@ router.post('/signup', (req, res) => {
 
 // Route for login
 router.post('/login', (req, res) => {
-  console.log('trigger loggin, checking for users')
+  // console.log('trigger loggin, checking for users')
   // Find user in db by email
   User.findOne({email: req.body.email}, (err, user) => {
     if (!user) {
       // if there is no user, return error
-      console.log('no user found')
+      // console.log('no user found')
       res.json({type: 'error', message: 'Account not found'})
     } else {
       // if user, check authentication
-      console.log('find a user, check password', user)
+      // console.log('find a user, check password', user)
       if (user.authenticated(req.body.password)) {
         // if authenticated, sign a token (login)
         var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
           expiresIn: '1d'
         });
         // return the token to be saved by the browser
-        console.log('you are logined: ', user, token)
+        // console.log('you are logined: ', user, token)
         res.json({type: 'success', user: user.toObject(), token})
       } else {
         res.json({type: 'error', message: 'Authentication failure'})

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Login from './Login';
 import Signup from './Signup'
 import Sports from './Sports';
-import Attractions from './Attractions';
+import Music from './Music';
 import Comedy from './Comedy';
 
 function App() {
@@ -86,8 +86,8 @@ function App() {
   var list = <p>Please select one to show details</p>;
   if (display === 'sports') {
     list = <Sports />
-  } else if (display === 'attractions') {
-    list = <Attractions />
+  } else if (display === 'music') {
+    list = <Music />
   } else if (display === 'comedy') {
     list =<Comedy />
   } else {
@@ -99,6 +99,8 @@ function App() {
         <p>Hello, {user.name}</p>
         <button onClick={logout}>Logout</button>
         <button onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
+        <button onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
+        <button onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
         {list}
       </>
     );
