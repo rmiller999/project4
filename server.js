@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const expressJWT = require('express-jwt');
 const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
+const User = require('./models/user');
 
 const app = express();
 
@@ -38,6 +39,23 @@ db.on('error', (err) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
+
+app.get('/users', (req,res) => {
+  User.find({}, function(err,users){
+      if (err) res.json(err)
+      res.json(users)
+  })
+})
+
+app.get('events/:id', (req,res) => {
+  Events.findById(req.params.id, (err, events) => {
+  if (err) {
+    res.json(err)
+  }
+  res.json(events)
+  })
+});
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Up and running on port ${process.env.PORT}...`);

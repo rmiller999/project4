@@ -39,5 +39,14 @@ router.get('/comedysall', (req, res) => {
     })
 })
 
+router.get('events/:id', (req,res) => {
+  Meals.findById(req.params.id, (err, events) => {
+  if (err) {
+    res.json(err)
+  }
+  res.json(events)
+  })
+});
+
 
 module.exports = router;
