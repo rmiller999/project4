@@ -27,6 +27,17 @@ function Comedy({user}) {
       })
     })
   }
+
+  const deleteAFavorite = (comedyId) => {
+    axios.delete(`/users/${user._id}/events/${comedyId}`).then((response) => {
+      axios.get('/events').then((response) => {
+        let fav = response.data.map(event => (
+          event.name
+        ))
+        setFavorites(fav)
+      })
+    })
+  }
   
   useEffect(() => {
     getComedyList();
@@ -50,7 +61,7 @@ function Comedy({user}) {
     return (
       <div>
         <p key={id}>{favorite.name}</p>
-        {/* <button onClick={()=> deleteAFavorite(favorite)}>Remove Favorite</button> */}
+        <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
       </div>
     )  
   })
