@@ -29,6 +29,17 @@ function Sports({user}) {
     })
   }
 
+  const deleteAFavorite = (sportsId) => {
+    axios.delete(`/users/${user._id}/events/${sportsId}`).then((response) => {
+      axios.get(`users/${user._id}/events`).then((response) => {
+        let fav = response.data.map(event => (
+          event
+        ))
+        setFavorites(fav)
+      })
+    })
+  }
+
 
   useEffect(() => {
     getSportsList();
@@ -52,7 +63,7 @@ function Sports({user}) {
       return (
         <div>
           <p key={id}>{favorite.name}</p>
-          {/* <button onClick={()=> deleteAFavorite(favorite)}>Remove Favorite</button> */}
+          <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
         </div>
       )  
     })

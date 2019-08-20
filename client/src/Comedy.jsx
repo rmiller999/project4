@@ -30,9 +30,9 @@ function Comedy({user}) {
 
   const deleteAFavorite = (comedyId) => {
     axios.delete(`/users/${user._id}/events/${comedyId}`).then((response) => {
-      axios.get('/events').then((response) => {
+      axios.get(`users/${user._id}/events`).then((response) => {
         let fav = response.data.map(event => (
-          event.name
+          event
         ))
         setFavorites(fav)
       })
@@ -68,7 +68,6 @@ function Comedy({user}) {
 
   return (
     <div>
-      {/* <button onClick={()=> this.getComedyList()}>Comedy</button> */}
       {content}
       {favoritesList}
     </div>

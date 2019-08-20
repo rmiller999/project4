@@ -28,6 +28,17 @@ function Music({user}) {
     })
   }
 
+  const deleteAFavorite = (musicId) => {
+    axios.delete(`/users/${user._id}/events/${musicId}`).then((response) => {
+      axios.get(`users/${user._id}/events`).then((response) => {
+        let fav = response.data.map(event => (
+          event
+        ))
+        setFavorites(fav)
+      })
+    })
+  }
+
   useEffect(() => {
     getMusicList();
     axios.get(`users/${user._id}/events`).then((res) => {
@@ -49,14 +60,13 @@ function Music({user}) {
     return (
       <div>
         <p key={id}>{favorite.name}</p>
-        {/* <button onClick={()=> deleteAFavorite(favorite)}>Remove Favorite</button> */}
+        <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
       </div>
     )  
   })
 
   return (
     <div>
-      {/* <button onClick={()=> this.getAttractionsList()}>Music</button> */}
       {content}
       {favoritesList}
     </div>
