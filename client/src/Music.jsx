@@ -48,8 +48,9 @@ function Music({user}) {
 
   let content = musicList.map(event => {
     return (
-      <div className='attractionsList'>
+      <div>
         <a href={event.url} target='_blank'>{event.name}</a>
+        <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
         <button onClick={()=>addToFavorites(event)} type="submit">Add to Favorites</button>
       </div>
     )
@@ -58,18 +59,23 @@ function Music({user}) {
   let favoritesList;
   favoritesList = favorites.map((favorite,id)=>{
     return (
-      <div>
+      <>
         <p key={id}>{favorite.name}</p>
         <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
-      </div>
+      </>
     )  
   })
 
   return (
-    <div>
-      {content}
-      {favoritesList}
-    </div>
+    <>
+      <div className='eventsList'>
+        {content}
+      </div>
+      <div className="eventFavs">
+        {favoritesList}
+
+      </div>
+    </>
   )
 }
 

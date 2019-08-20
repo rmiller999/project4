@@ -82,27 +82,28 @@ function App() {
   //   checkForLocalToken()
   // }, [])
 
-  var contents
-  var list = <p>Please select one to show details</p>;
+  var contents;
+  var list;
   if (display === 'sports') {
     list = <Sports user={user}/>
   } else if (display === 'music') {
     list = <Music user={user} />
   } else if (display === 'comedy') {
-    list =<Comedy user={user} />
-  } else {
-    list = <p>Please select one to show details</p>
+    list = <Comedy user={user} />
   }
   if (user) {
     contents = (
-      <>
+      <div >
         <p>Hello, {user.name}</p>
-        <button onClick={logout}>Logout</button>
-        <button onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
-        <button onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
-        <button onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
+        <nav>
+          <button onClick={logout}>Logout</button>
+          <button onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
+          <button onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
+          <button onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
+
+        </nav>
         {list}
-      </>
+      </div>
     );
   } else {
     contents = (

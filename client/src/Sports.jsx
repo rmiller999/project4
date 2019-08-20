@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { set } from 'mongoose';
 
 function Sports({user}) {
   const [sportsList, setSportsList] = useState([])
   const [favorites, setFavorites] = useState([])
   const [sportId, setSportId] = useState(1)
+  const [singleEvent, setSingleEvent] = useState([])
+  const [details, setDetails] = useState('')
 
   const getSportsList = () => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('mernToken');
     axios.get('/api/sportsall').then(res => {
       // console.log('get result from backend', res.data)
       setSportsList(res.data._embedded.events)
+      // setSingleEvent(res.data)
       setSportId(res.data._embedded.events.id)
       // this.setState({
       //   sportsList: res.data._embedded.events,
@@ -40,6 +44,27 @@ function Sports({user}) {
     })
   }
 
+  const getEventDetails = (favorites) => {
+      favorites =  (
+        <div>
+          <a href={setSingleEvent.url}>{setSingleEvent.name}</a>
+          {/* <p>{event._embedded.venues[0].name}</p> */}
+        </div>
+      )
+  }
+
+  // var details1;
+  // let display;
+  // if (details === 'show') {
+  //   details1 = (
+  //     <div>
+  //       <a href={event.url} target='_blank'>{event.name}</a>
+  //       <p>{event._embedded}</p>
+  //     </div>
+  //   )
+  // }
+
+
 
   useEffect(() => {
     getSportsList();
@@ -50,9 +75,10 @@ function Sports({user}) {
 
   let content = sportsList.map(event => {
       return (
-        <div className='sportsList'>
+        <div>
           <a href={event.url} target='_blank'>{event.name}</a>
-          <p>{event._embedded.venues[0].name}</p>
+          <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
+          {/* <p>Min Price: {event.priceRanges.min}</p> */}
           <button onClick={()=>addToFavorites(event)} type="submit">Add to Favorites</button>
         </div>
       )
@@ -61,21 +87,26 @@ function Sports({user}) {
     let favoritesList;
     favoritesList = favorites.map((favorite,id)=>{
       return (
-        <div>
+        <>
           <p key={id}>{favorite.name}</p>
+          <button onClick={()=>getEventDetails(favorite._id)} type="submit">Get Event Details</button>
           <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
-        </div>
+        </>
       )  
     })
 
   return (
-    <div>
-      {/* <button onClick={()=> this.getSportsList()}>Sports</button> */}
-      <div className=''>
-        {content}
+    <>
+      <div className='eventsList'>
+          {content}
+      </div>
+      <div className="eventFavs">
         {favoritesList}
       </div>
-    </div>
+      <div className="eventFavs">
+        {setSingleEvent}
+      </div>
+    </>
   )
 }
 
