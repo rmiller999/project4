@@ -28,7 +28,8 @@ userSchema.set('toObject', {
     let returnJson = {
       _id: ret._id,
       email: ret.email,
-      name: ret.name
+      name: ret.name,
+      events: ret.events
     }
     return returnJson
   }

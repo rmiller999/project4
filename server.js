@@ -49,15 +49,22 @@ app.get('/users', (req,res) => {
   })
 })
 
+app.get("/users/:uid/events", (req, res) => {
+  User.findById(req.params.uid).populate('events').exec( (err, user) => {
+    res.json(user.events);
+  })
+})
+
 app.post("/users/:uid/events", (req,res) => {
   Event.create({
   name: req.body.name,
   date: req.body.date
   }, (err, event) => {
-  User.findById(req.params.uid, (err, user) => {
+  User.findById(req.params.uid).populate('events').exec( (err, user) => {
     user.events.push(event._id);
-    user.save();
-    res.json(user);
+    user.save((err, user) => {
+      res.json(user);
+    });
     })
   })
 });
@@ -73,6 +80,24 @@ app.delete("/users/:uid/events/:eid", (req,res) => {
         })
       })
     })
+})
+
+app.post('/events', (req,res) => {
+  Event.create({
+  name: req.body.name,
+  date: req.body.date
+  }, function(err, events) {
+    res.json(events)
+})
+})
+
+app.get('/events', (req,res) => {
+  Event.find({}, function(err,events){
+      if (err) {
+      res.json(err)
+      }
+      res.json(events)
+  })
 })
 
 app.get('/events/:id', (req,res) => {

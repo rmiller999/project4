@@ -85,11 +85,11 @@ function App() {
   var contents
   var list = <p>Please select one to show details</p>;
   if (display === 'sports') {
-    list = <Sports />
+    list = <Sports user={user}/>
   } else if (display === 'music') {
-    list = <Music />
+    list = <Music user={user} />
   } else if (display === 'comedy') {
-    list =<Comedy />
+    list =<Comedy user={user} />
   } else {
     list = <p>Please select one to show details</p>
   }
@@ -113,6 +113,7 @@ function App() {
       </>
     )
   }
+
   return (
     <>
       {contents}
