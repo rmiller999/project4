@@ -53,7 +53,7 @@ function Sports({user}) {
       )
   }
 
-  // var details1;
+  var details1;
   // let display;
   // if (details === 'show') {
   //   details1 = (
@@ -74,12 +74,21 @@ function Sports({user}) {
   },[])
 
   let content = sportsList.map(event => {
+    // if (details === 'show') {
+    //   details1 = (
+    //     <div>
+    //       <a href={event.url} target='_blank'>{event.name}</a>
+    //       <p>{event._embedded}</p>
+    //     </div>
+    //   )
+    // }
       return (
         <div>
           <a href={event.url} target='_blank'>{event.name}</a>
           <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
           {/* <p>Min Price: {event.priceRanges.min}</p> */}
-          <button onClick={()=>addToFavorites(event)} type="submit">Add to Favorites</button>
+          <button onClick={()=>addToFavorites(event)} type="submit">Going to this Event?</button>
+          <button onClick={()=>setDetails(details === "show" ? '' : 'show')} type="submit">Get Event Details</button>
         </div>
       )
     })
@@ -89,8 +98,8 @@ function Sports({user}) {
       return (
         <>
           <p key={id}>{favorite.name}</p>
-          <button onClick={()=>getEventDetails(favorite._id)} type="submit">Get Event Details</button>
-          <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
+          {/* <button onClick={()=>getEventDetails(favorite._id)} type="submit">Get Event Details</button> */}
+          <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Event</button>
         </>
       )  
     })
@@ -104,7 +113,7 @@ function Sports({user}) {
         {favoritesList}
       </div>
       <div className="eventFavs">
-        {setSingleEvent}
+        {/* {details1} */}
       </div>
     </>
   )

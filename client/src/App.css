@@ -1,7 +1,38 @@
-.App {
-  text-align: center;
+body {
+  /* text-align: center; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('/Seattle_back.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
+nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navButton {
+  float: left;
+  cursor: pointer;
+  background-color: #333;
+  border-style: none;
+  font-size: 1em;
+}
+
+.navButton {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navButton:hover {
+  background-color: #111;
+}
 
 .App-header {
   background-color: #282c34;
@@ -23,7 +54,7 @@
   overflow-y: auto;
   max-height: 750px;
   border: 1px solid black;
-  /* background-color: #d9d9d9; */
+  background-color: #d9d9d9d8;
 }
 
 .eventFavs {
@@ -33,7 +64,7 @@
   border: 2px solid black;
   margin-right: 15px;
   margin-left: 25px;
-  background-color: #d9d9d9;
+  background-color: #d9d9d9d8;
   /* position: fixed;
   left: 50%;
   bottom: 1%; */

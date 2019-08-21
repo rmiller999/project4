@@ -83,7 +83,7 @@ function App() {
   // }, [])
 
   var contents;
-  var list;
+  var list = <h1>Seattle Events!</h1>;
   if (display === 'sports') {
     list = <Sports user={user}/>
   } else if (display === 'music') {
@@ -93,17 +93,16 @@ function App() {
   }
   if (user) {
     contents = (
-      <div >
-        <p>Hello, {user.name}</p>
+      < >
+        {/* <p>Hello, {user.name}</p> */}
         <nav>
-          <button onClick={logout}>Logout</button>
-          <button onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
-          <button onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
-          <button onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
-
+          <button className="navButton" onClick={logout}>Logout</button>
+          <button className="navButton" onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
+          <button className="navButton" onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
+          <button className="navButton" onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
         </nav>
         {list}
-      </div>
+      </>
     );
   } else {
     contents = (

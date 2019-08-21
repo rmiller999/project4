@@ -51,7 +51,7 @@ function Music({user}) {
       <div>
         <a href={event.url} target='_blank'>{event.name}</a>
         <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
-        <button onClick={()=>addToFavorites(event)} type="submit">Add to Favorites</button>
+        <button onClick={()=>addToFavorites(event)} type="submit">Going to this Event?</button>
       </div>
     )
   })
@@ -61,7 +61,7 @@ function Music({user}) {
     return (
       <>
         <p key={id}>{favorite.name}</p>
-        <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Favorite</button>
+        <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Event</button>
       </>
     )  
   })
