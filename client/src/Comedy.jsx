@@ -50,7 +50,7 @@ function Comedy({user}) {
     return (
       <div>
         <a href={event.url} target='_blank'>{event.name}</a>
-        <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
+        <p>Loacation: {event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
         <button onClick={()=>addToFavorites(event)} type="submit">Going to this Event?</button>
       </div>
     )

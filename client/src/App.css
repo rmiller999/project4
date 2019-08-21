@@ -1,9 +1,10 @@
 body {
   /* text-align: center; */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('/Seattle_back.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('/background.jpg');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 nav {
@@ -11,27 +12,43 @@ nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #A5ACAF;
 }
 
 .navButton {
   float: left;
   cursor: pointer;
-  background-color: #333;
+  background-color: #A5ACAF;
   border-style: none;
   font-size: 1em;
 }
 
 .navButton {
   display: block;
-  color: white;
+  color: #002244;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 .navButton:hover {
-  background-color: #111;
+  background-color: #69BE28;
+}
+
+.navButton:focus,
+.navButton:active {
+  background-color: #69BE28;
+}
+
+button {
+  outline: none;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-left: 30%;
 }
 
 .App-header {
@@ -54,7 +71,7 @@ nav {
   overflow-y: auto;
   max-height: 750px;
   border: 1px solid black;
-  background-color: #d9d9d9d8;
+  background-color: #A5ACAFd8;
 }
 
 .eventFavs {
@@ -64,7 +81,7 @@ nav {
   border: 2px solid black;
   margin-right: 15px;
   margin-left: 25px;
-  background-color: #d9d9d9d8;
+  background-color: #A5ACAFd8;
   /* position: fixed;
   left: 50%;
   bottom: 1%; */
@@ -84,6 +101,16 @@ nav {
   border: 2px solid black;
   margin: 0 30% 0 30%;
 }
+
+h1 {
+  color: #A5ACAF;
+  font-size: 3em;
+}
+
+h3 {
+  color: #A5ACAF;
+}
+
 
 @keyframes App-logo-spin {
   from {

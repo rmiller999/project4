@@ -100,6 +100,16 @@ app.get('/events', (req,res) => {
   })
 })
 
+app.put("/events/:id", (req,res) => {
+  Event.findByIdAndUpdate(req.params.id, {
+      attending: req.body.attending ? true : false
+  }, {
+      new: true
+  }, (err, events) =>  {
+      res.json(events);
+  });
+});
+
 app.get('/events/:id', (req,res) => {
   Event.findById(req.params.id, (err, event) => {
   if (err) {

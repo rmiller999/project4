@@ -85,8 +85,8 @@ function Sports({user}) {
       return (
         <div>
           <a href={event.url} target='_blank'>{event.name}</a>
-          <p>{event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
-          {/* <p>Min Price: {event.priceRanges.min}</p> */}
+          <p>Loacation: {event._embedded.venues[0].name}, Date: {event.dates.start.localDate}</p>
+          {/* <img src={event.seatmap.staticUrl} alt=""/> */}
           <button onClick={()=>addToFavorites(event)} type="submit">Going to this Event?</button>
           <button onClick={()=>setDetails(details === "show" ? '' : 'show')} type="submit">Get Event Details</button>
         </div>
@@ -100,6 +100,11 @@ function Sports({user}) {
           <p key={id}>{favorite.name}</p>
           {/* <button onClick={()=>getEventDetails(favorite._id)} type="submit">Get Event Details</button> */}
           <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Event</button>
+            {/* <label for="attending">Completed this game?:</label>
+            { favorite.attending ? 
+              <input type='checkbox' name='attending' checked onClick={()=> deleteAFavorite(favorite._id)} />
+              : <input type='checkbox' name='attending' />}
+            <input type="submit" class='button' /> */}
         </>
       )  
     })

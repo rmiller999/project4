@@ -94,20 +94,20 @@ function App() {
   if (user) {
     contents = (
       < >
-        {/* <p>Hello, {user.name}</p> */}
         <nav>
           <button className="navButton" onClick={logout}>Logout</button>
           <button className="navButton" onClick={() => setDisplay(display === "sports" ? '' : 'sports')}>Sports</button>
           <button className="navButton" onClick={() => setDisplay(display === "music" ? '' : 'music')}>Music</button>
           <button className="navButton" onClick={() => setDisplay(display === "comedy" ? '' : 'comedy')}>Comedy</button>
         </nav>
+        <h3>Hello, {user.name}</h3>
         {list}
       </>
     );
   } else {
     contents = (
       <>
-        <p>Please signup or login</p>
+        <p>Please signup or login for Seattle Events!</p>
         <Login liftToken={liftToken} />
         <Signup liftToken={liftToken}/>
       </>
