@@ -69,9 +69,11 @@ function Music({user}) {
   return (
     <>
       <div className='eventsList'>
+        <h2>Music Events:</h2>
         {content}
       </div>
       <div className="eventFavs">
+        <h2>My Events:</h2>
         {favoritesList}
 
       </div>

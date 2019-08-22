@@ -100,11 +100,11 @@ function Sports({user}) {
           <p key={id}>{favorite.name}</p>
           {/* <button onClick={()=>getEventDetails(favorite._id)} type="submit">Get Event Details</button> */}
           <button onClick={()=> deleteAFavorite(favorite._id)}>Remove Event</button>
-            {/* <label for="attending">Completed this game?:</label>
+            <label for="attending">Completed this game?:</label>
             { favorite.attending ? 
-              <input type='checkbox' name='attending' checked onClick={()=> deleteAFavorite(favorite._id)} />
-              : <input type='checkbox' name='attending' />}
-            <input type="submit" class='button' /> */}
+              <input type='checkbox' name='attending' checked onClick={()=> } />
+              : <input type='checkbox' name='attending' onClick={}/>}
+            <input type="submit" class='button' />
         </>
       )  
     })
@@ -112,9 +112,11 @@ function Sports({user}) {
   return (
     <>
       <div className='eventsList'>
+          <h2>Sports Events:</h2>
           {content}
       </div>
       <div className="eventFavs">
+        <h2>My Events:</h2>
         {favoritesList}
       </div>
       <div className="eventFavs">

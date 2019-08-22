@@ -107,7 +107,7 @@ function App() {
   } else {
     contents = (
       <>
-        <p>Please signup or login for Seattle Events!</p>
+        <h1>Please signup or login for Seattle Events!</h1>
         <Login liftToken={liftToken} />
         <Signup liftToken={liftToken}/>
       </>
